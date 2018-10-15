@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Stock Search Homework</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Stock Homework</title>
+
+    </head>
+
+    <body>
+            
+        
+        <div class="container">
+                <div class="jumbotron">
+            <h1 class="display-4">Stock Search</h1>
+            <hr class="my-4">
+            <p class="lead">Input a stock symbol and click the button to add it to the list. Click on the stock symbol button to view information about each stock.</p>
+           
+            <!-- stock buttons go here  -->
+            <div id="button-spot"></div>
+            <br />
+            <form id="stock-form"> 
+                <label for="stock-input">What stock would you like to view?</label>
+                <input type="text" id="stock-input">
+                <br />
+                <br />
+                <!-- click to add new stock button -->
+                <input id="add-stock" type="submit" value="Add stock symbol" class="btn btn-primary btn-lg" href="#" role="button">
+        
+                 <!-- click to add stock as a favorite -->
+                <input id="fav-stock" type="submit" value="Add to favorites" class="btn btn-primary btn-lg" href="#" role="button">
+            </form>
+
+            <!-- favorite stock buttons go here  -->
+            <div id="fav-button"></div>
+        </div>
+
+        <!-- stock info lands here-->
+        <div id="stock-info"></div>
+
+
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="app.js"></script>
+
+    </body>
+
+    </html>
