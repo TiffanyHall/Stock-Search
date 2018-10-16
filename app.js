@@ -2,6 +2,8 @@ let stockSymbolArray = '';
 
 const stockList = ['AAPL', 'BNED', 'CAKE', 'DSW', 'EAD', 'FRAN'];
 
+const favList = [];
+
 
 const showStockInfo = function () {
  
@@ -54,6 +56,7 @@ const showStockInfo = function () {
      $('#stock-info').prepend(stockDiv);
 
   });
+  console.log('hello');
 
 }
 
@@ -61,7 +64,7 @@ const showStockInfo = function () {
 const render = function () {
 
   // Deleting the stocks to prevent repeat buttons//
-  $('#button-spot').empty();
+  $('#button-spot, #fav-button').empty();
 
   //creating buttons for each stock in the array//
   for (let i = 0; i < stockList.length; i++) {
@@ -73,21 +76,60 @@ const render = function () {
        
     $('#button-spot').append(newButton);
   }
+
+
+//creating buttons for favorites list//
+
+for (let i = 0; i < favList.length; i++) {
+
+  const newButton = $('<button>');
+      newButton.addClass('stock-btn btn');
+      newButton.attr('data-name', favList[i]);
+      newButton.text(favList[i]);
+     
+  $('#fav-button').append(newButton);
+}
+
 }
 
 //function for adding a new stock button//
-const addButton = function(event) {
+const addButton = function(event, buttonClick) {
   event.preventDefault();
+  console.log(buttonClick);
 
   const stock = $('#stock-input').val().trim().toUpperCase();
   stockSymbolArray.forEach(function (validationList){
-    if (validationList.symbol === stock) {
-      stockList.push(stock);
+    if (validationList.symbol === stock) { 
+      if (buttonClick === "Add to favorites") {
+        favList.push(stock);
+
+      } else {
+        stockList.push(stock);
+
+      }
     }
   })
 
   $('#stock-input').val('');
   render();
+}
+
+//function for favorites list//
+
+const addFav = function (event){
+
+event.preventDefault();
+
+  const stock = $('#stock-input').val().trim().toUpperCase();
+  stockSymbolArray.forEach(function (validationList){
+    if (validationList.symbol === stock) {
+      favList.push(stock);
+    }
+  })
+
+  $('#stock-input').val('');
+  render();
+
 }
 
 
@@ -104,7 +146,12 @@ const getStockSymbols = function() {
 } 
 
 $('#add-stock').on('click', addButton);
-$('#button-spot').on('click', '.stock-btn', showStockInfo);
+$(document).on('click', '.stock-btn', showStockInfo);
+$('#fav-stock').on('click', function (event){
+  event.preventDefault(); 
+ const buttonClick = $(this).val();
+ addButton(event, buttonClick);
+} )
 
 render();
 getStockSymbols();
